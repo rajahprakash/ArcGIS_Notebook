@@ -8,3 +8,14 @@ from shapely.geometry import mapping, shape
 df = pd.read_csv(r"C:\Users\admin\Google_Build\google_build_SL.csv")
 df.head()
 
+df['geometry'] = df['geometry'].apply(wkt.loads)
+gdf = gpd.GeoDataFrame(df,geometry='geometry',crs='EPSG:4326')
+gdf.head()
+
+gdf.to_file(r"C:\Users\admin\Google_Build\google_build_SL.shp")
+
+mapname = "Map"
+project = arcpy.mp.ArcGISProject("CURRENT")
+m = project.listMaps(mapname)[0]
+buildings = r"C:\Users\admin\Google_Build\google_build_SL.shp"
+m.addDataFromPath(buildings)
