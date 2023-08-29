@@ -1,0 +1,10 @@
+import pandas as pd
+import geopandas as gpd
+from arcgis.gis import GIS
+from shapely import wkt
+from shapely.wkt import loads
+from shapely.geometry import mapping, shape
+
+df = pd.read_csv(r"C:\Users\admin\Google_Build\google_build_SL.csv")
+df.head()
+
